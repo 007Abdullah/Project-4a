@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import sky from './images/Sky.jpg';
+import earth from './images/Earth.jpg';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
+
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
@@ -16,13 +16,18 @@ const useStyles = makeStyles((theme) => ({
   topLevel: {
     width: '100%',
     height: '300px',
-    backgroundColor: 'red',
+    backgroundColor: 'lightblue',
     display: 'flex',
     justifyContent: 'space-evenly',
   },
   img: {
     height: '300px'
-
+  },
+  earthImg: {
+    zIndex: "-10",
+    width: '100%',
+    height: '70vh',
+    overFlow: 'hidden'
   }
 }));
 
@@ -42,11 +47,14 @@ function App() {
               <img src={sky} alt="Background-Sky" className={classes.img} />
             </Grid>
             <Grid item xs={4}>
-              <img src={sky} alt="Background-Sky" className={classes.img} />
+              <img src={sky} alt="Background-Sky" className={classes.img} style={{ width: "100%" }} />
             </Grid>
           </Grid>
         </div>
-
+        <div style={{ backgroundColor: '#D7366C', width: '100%' }}>
+          <img src={earth} alt="Earth" className={classes.earthImg} />
+          
+        </div>
       </div>
     </React.Fragment>
   );
