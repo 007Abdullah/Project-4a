@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import sky from './images/Sky.jpg';
 import earth from './images/Earth.jpg';
+import alice from './images/Alice.gif';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -28,6 +29,17 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '70vh',
     overFlow: 'hidden'
+  },
+  aliceImg: {
+    height: '80%',
+    position: 'absolute',
+    top: '400px',
+    left: '40%',
+    transform: 'translate(-50%, -50%)',
+    overflow: 'hidden',
+    width: '100%',
+    maxWidth: '450px',
+    zIndex: '1'
   }
 }));
 
@@ -53,7 +65,7 @@ function App() {
         </div>
         <div style={{ backgroundColor: '#D7366C', width: '100%' }}>
           <img src={earth} alt="Earth" className={classes.earthImg} />
-          
+          <img src={alice} alt="Alice gif" className={classes.aliceImg} />
         </div>
       </div>
     </React.Fragment>
