@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import sky from './images/Sky.jpg';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
@@ -14,6 +13,17 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  topLevel: {
+    width: '100%',
+    height: '300px',
+    backgroundColor: 'red',
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  },
+  img: {
+    height: '300px'
+
+  }
 }));
 
 function App() {
@@ -23,20 +33,20 @@ function App() {
   return (
     <React.Fragment>
       <div className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
+        <div className={classes.topLevel}>
+          <Grid container>
+            <Grid item xs={4}>
+              <img src={sky} alt="Background-Sky" className={classes.img} />
+            </Grid>
+            <Grid item xs={4}>
+              <img src={sky} alt="Background-Sky" className={classes.img} />
+            </Grid>
+            <Grid item xs={4}>
+              <img src={sky} alt="Background-Sky" className={classes.img} />
+            </Grid>
           </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-          </Grid>
-        </Grid>
+        </div>
+
       </div>
     </React.Fragment>
   );
