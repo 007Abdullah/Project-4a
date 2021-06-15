@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import useWebAnimations from '@wellyshen/use-web-animations';
 import './App.css';
 import sky from './images/Sky.jpg';
 import earth from './images/Earth.jpg';
@@ -6,7 +7,10 @@ import alice from './images/Alice.gif';
 import tree from './images/Tree.png';
 import roof from './images/Rook.png';
 import horse from './images/Horseknight.png';
-
+import pawn from './images/Pawn.png';
+import smallPawn from './images/Small-Pawn.png';
+import smallRook from './images/Small-Rock.png';
+import smallTree from './images/Small-Tree.png';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
@@ -52,24 +56,69 @@ const useStyles = makeStyles((theme) => ({
   },
   KnightHorse: {
     position: 'absolute',
-    top: '200px',
+    top: '-700px',
     left: "0px",
     zIndex: '10'
   },
   Roof: {
     position: 'absolute',
-    top: '550px',
-    left: "0px"
+    top: '-350px',
+    left: "0px",
+    zIndex: '10'
+  },
+  smallTree: {
+    position: 'absolute',
+    top: '350px',
+    left: '50px',
+    zIndex: '10'
+  },
+  pawn: {
+    position: 'absolute',
+    top: '300px',
+    left: '750px',
+    zIndex: '10'
+  },
+  smallPawn: {
+    position: 'absolute',
+    top: '500px',
+    left: '0px'
+  },
+  smallRoof: {
+    position: 'absolute',
+    top: '350px',
+    left: '900px',
+    zIndex: '10'
   }
 }));
 
 function App() {
 
+  const classes = useStyles();
+
   let alice_Animation = useRef(null);
   let HorseKNightRef = useRef(null);
 
+  const { ref } = useWebAnimations({
+    keyframes: [
+      { transform: 'translate(400%,0)' },
+      { transform: 'translate(0%,0)' }
+    ],
+    timing: {
+      duration: 6000,
+      iterations: Infinity,
+      easing: "ease-in-out"
+    },
+  });
 
-  const classes = useStyles();
+  useEffect(() => {
+    HorseKNightRef.current.animate([
+      { transform: 'translateX(100%)' },
+      { transform: 'translateX(0%)' }
+    ], {
+      duration: 3000,
+      iterations: Infinity
+    });
+  }, [])
 
   return (
     <React.Fragment>
@@ -104,7 +153,7 @@ function App() {
 
         {/* ////////////////////////////  START TREE ////////////////////////////  */}
 
-        <div className={classes.treeDiv}>
+        <div className={classes.treeDiv} ref={ref}>
           <img src={tree} alt="TREE" style={{ height: "600px" }} />
         </div>
 
@@ -112,13 +161,25 @@ function App() {
 
         {/* ////////////////////////////  START KNIGHT AND ROOF ////////////////////////////  */}
 
-        <div ref={HorseKNightRef}>
+        <div ref={HorseKNightRef} style={{ position: 'relative' }}>
           <img src={horse} alt="HORSE KNIGHT" className={classes.KnightHorse} />
           <img src={roof} alt="ROOF" className={classes.Roof} />
         </div>
 
 
         {/* ////////////////////////////  END KNIGHT AND ROOF ////////////////////////////  */}
+
+
+        {/* ////////////////////////////  START "SMALL-TREE" "PAWN" "SMALL PAWN" "SMALL PLAM"  ////////////////////////////  */}
+
+        <div>
+          <img src={smallTree} alt="SMALL_TREE" className={classes.smallTree} />
+          <img src={pawn} alt="PAWN" className={classes.pawn} />
+          <img src={smallPawn} alt="SMALL_PAWN" className={classes.smallPawn} />
+          <img src={smallRook} alt="SMALL_ROOK" className={classes.smallRoof} />
+        </div>
+
+        {/* ////////////////////////////  END  ////////////////////////////  */}
 
       </div>
     </React.Fragment>
