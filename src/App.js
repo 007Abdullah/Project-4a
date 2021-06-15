@@ -4,6 +4,8 @@ import sky from './images/Sky.jpg';
 import earth from './images/Earth.jpg';
 import alice from './images/Alice.gif';
 import tree from './images/Tree.png';
+import roof from './images/Rook.png';
+import horse from './images/Horseknight.png';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -47,12 +49,24 @@ const useStyles = makeStyles((theme) => ({
     top: '0',
     left: '200px',
     zIndex: '2'
+  },
+  KnightHorse: {
+    position: 'absolute',
+    top: '200px',
+    left: "0px",
+    zIndex: '10'
+  },
+  Roof: {
+    position: 'absolute',
+    top: '550px',
+    left: "0px"
   }
 }));
 
 function App() {
 
   let alice_Animation = useRef(null);
+  let HorseKNightRef = useRef(null);
 
 
   const classes = useStyles();
@@ -95,6 +109,16 @@ function App() {
         </div>
 
         {/* ////////////////////////////  END TREE ////////////////////////////  */}
+
+        {/* ////////////////////////////  START KNIGHT AND ROOF ////////////////////////////  */}
+
+        <div ref={HorseKNightRef}>
+          <img src={horse} alt="HORSE KNIGHT" className={classes.KnightHorse} />
+          <img src={roof} alt="ROOF" className={classes.Roof} />
+        </div>
+
+
+        {/* ////////////////////////////  END KNIGHT AND ROOF ////////////////////////////  */}
 
       </div>
     </React.Fragment>
